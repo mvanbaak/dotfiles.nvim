@@ -10,4 +10,5 @@
 -- enable lsp servers interested for us
 vim.lsp.enable({
     "lua_ls",
+    "pyright",
 })
