@@ -32,6 +32,8 @@ require("config.options")
 require("config.keymaps")
 -- auto commands
 require("config.autocmds")
+-- diagnostics
+require("config.diagnostics")
 
 -- Setup lazy.nvim
 require("lazy").setup({
