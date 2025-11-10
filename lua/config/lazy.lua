@@ -34,6 +34,8 @@ require("config.keymaps")
 require("config.autocmds")
 -- diagnostics
 require("config.diagnostics")
+-- LSP
+require("config.lsp")
 
 -- Setup lazy.nvim
 require("lazy").setup({
