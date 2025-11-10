@@ -22,5 +22,13 @@ return {
                 "pyright"
             },
         })
+
+        -- cmp has lsp capabilities
+        local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+        -- Set some defaults that should be applied to all servers
+        vim.lsp.config('*', {
+            capabilities = cmp_capabilities,
+        })
     end,
 }
