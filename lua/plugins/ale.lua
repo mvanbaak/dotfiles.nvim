@@ -1,3 +1,10 @@
+-- ================================================================================================
+-- TITLE : ale
+-- ABOUT : Check syntax in Vim/Neovim asynchronously and fix files.
+-- LINKS :
+--   > github : https://github.com/dense-analysis/ale
+-- ================================================================================================
+
 local js_fixers = { "eslint", "prettier" }
 
 return {
