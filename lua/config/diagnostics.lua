@@ -19,12 +19,9 @@ vim.diagnostic.config({
             [vim.diagnostic.severity.INFO] = diagnostic_signs.Info,
             [vim.diagnostic.severity.HINT] = diagnostic_signs.Hint,
         },
-        -- Highlight entire line for errors
-        linehl = {
-            [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
-        },
-        -- Highlight the line number for warnings
+        -- Highlight the line number for errors and warnings
         numhl = {
+            [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
             [vim.diagnostic.severity.WARN] = 'WarningMsg',
         },
     },
