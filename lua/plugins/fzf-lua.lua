@@ -65,7 +65,21 @@ return {
 				require("fzf-lua").lsp_workspace_symbols()
 			end,
 			desc = "FZF Workspace Symbols",
-		},
-	},
+        },
+        {
+            "<Leader>fd",
+            function()
+                require("fzf-lua").lsp_definitions()
+            end,
+            desc = "FZF [F]ind [D]edfinitions",
+        },
+        {
+            "<Leader>fr",
+            function()
+                require("fzf-lua").lsp_references()
+            end,
+            desc = "FZF [F]ind [R]eferences",
+        },
+},
 	opts = {},
 }
