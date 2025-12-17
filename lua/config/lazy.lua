@@ -49,7 +49,7 @@ require("lazy").setup({
     -- configure look/feel
     ui = { border = "rounded" },
     -- automatically check for plugin updates
-    checker = { enabled = true },
+    checker = { enabled = true, notify = false },
     -- tweak performance a bit
     performance = {
         rtp = {
