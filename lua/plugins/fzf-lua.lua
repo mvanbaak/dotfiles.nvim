@@ -15,56 +15,63 @@ return {
 			function()
 				require("fzf-lua").files()
 			end,
-			desc = "FZF Files",
+			desc = "FZF [F]ind [F]iles",
 		},
 		{
 			"<leader>fg",
 			function()
 				require("fzf-lua").live_grep()
 			end,
-			desc = "FZF Live Grep",
+			desc = "FZF [F]ind Live [G]rep",
 		},
+        {
+            "<leader>fc",
+            function()
+                require("fzf-lua").git_commits()
+            end,
+            desc = "FZF [F]ind [C]ommits"
+        },
 		{
 			"<leader>fb",
 			function()
 				require("fzf-lua").buffers()
 			end,
-			desc = "FZF Buffers",
+			desc = "FZF [F]ind [B]uffers",
 		},
 		{
 			"<leader>fh",
 			function()
 				require("fzf-lua").help_tags()
 			end,
-			desc = "FZF Help Tags",
+			desc = "FZF [F]ind [H]elp Tags",
 		},
 		{
 			"<leader>fx",
 			function()
 				require("fzf-lua").diagnostics_document()
 			end,
-			desc = "FZF Diagnostics Document",
+			desc = "FZF [F]ind Diagnostics Document",
 		},
 		{
 			"<leader>fX",
 			function()
 				require("fzf-lua").diagnostics_workspace()
 			end,
-			desc = "FZF Diagnostics Workspace",
+			desc = "FZF [F]ind Diagnostics Workspace",
 		},
 		{
 			"<leader>fs",
 			function()
 				require("fzf-lua").lsp_document_symbols()
 			end,
-			desc = "FZF Document Symbols",
+			desc = "FZF [F]ind Document [S]ymbols",
 		},
 		{
 			"<leader>fS",
 			function()
 				require("fzf-lua").lsp_workspace_symbols()
 			end,
-			desc = "FZF Workspace Symbols",
+			desc = "FZF [F]ind Workspace [S]ymbols",
         },
         {
             "<Leader>fd",
