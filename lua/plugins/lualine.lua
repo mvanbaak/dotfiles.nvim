@@ -10,7 +10,8 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
         options = {
-            theme = "neon",
+            theme = "moonfly",
+
         },
         tabline = {
             lualine_a = {

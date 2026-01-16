@@ -11,8 +11,8 @@ return {
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
         vim.g.neon_style = "dark" -- Pick the dark version
-        vim.cmd([[colorscheme neon]])
-        vim.api.nvim_set_hl(0, "Normal", { bg = "#000000" })
-        vim.api.nvim_set_hl(0, "NormalNC", { bg = "#000000" })
+        -- vim.cmd([[colorscheme neon]])
+        -- vim.api.nvim_set_hl(0, "Normal", { bg = "#000000" })
+        -- vim.api.nvim_set_hl(0, "NormalNC", { bg = "#000000" })
     end,
 }
