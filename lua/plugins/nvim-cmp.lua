@@ -64,26 +64,19 @@ return {
                 mapping = {
                     ['<C-f>'] = cmp.mapping.scroll_docs(-4),
                     ['<C-d>'] = cmp.mapping.scroll_docs(4),
-                    ['<C-n>'] = cmp.mapping(function(fallback)
-                        if luasnip.expand_or_jumpable() then
-                            luasnip.expand_or_jump()
-                            fallback()
-                        end
-                    end, { "i", "s" }),
-                    ['<C-p>'] = cmp.mapping(function(fallback)
-                        if luasnip.jumpable(-1) then
-                            luasnip.jump(-1)
+                    ['<C-e>'] = cmp.mapping.abort(),
+                    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+                    ["<Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item()
+                        elseif has_words_before() then
+                            cmp.complete()
                         else
                             fallback()
                         end
                     end, { "i", "s" }),
-                    -- ['<c-e>'] = cmp.mapping.complete(),
-                    ['<C-e>'] = cmp.mapping.abort(),
-                    ['<CR>'] = cmp.mapping.confirm({
-                        select = true,
-                    }),
-                    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-                    ["<Tab>"] = cmp.mapping(function(fallback)
+                    ["<C-n>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.select_next_item()
                         elseif has_words_before() then
@@ -99,6 +92,14 @@ return {
                             fallback()
                         end
                     end, { "i", "s" }),
+                    ["<C-p>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item()
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
+
                 },
                 autocomplete = false,
                 formatting = {
@@ -121,9 +122,9 @@ return {
                 },
                 sources = {
                     { name = 'path' },
-                    { name = 'treesitter', keyword_length = 5, max_item_count = 3 },
                     { name = 'nvim_lsp_signature_help' },
                     { name = 'nvim_lsp' },
+                    { name = 'treesitter', keyword_length = 5, max_item_count = 3 },
                     { name = 'buffer', keyword_length = 5, max_item_count = 3 },
                     { name = 'luasnip', keyword_length = 3, max_item_count = 3 },
                     { name = 'pandoc_references' },
@@ -131,13 +132,24 @@ return {
                     { name = 'latex_symbols' },
                 },
                 view = {
-                    entries = "native",
+                    entries = "custom",
                 },
                 window = {
+                    completion = {
+                        border = require 'misc.style'.border,
+                    },
                     documentation = {
                         border = require 'misc.style'.border,
                     },
                 },
+                enabled = function()
+                    local disabled = false
+                    disabled = disabled or (vim.api.nvim_get_option_value('buftype', { buf = 0 }) == 'prompt')
+                    disabled = disabled or (vim.fn.reg_recording() ~= '')
+                    disabled = disabled or (vim.fn.reg_executing() ~= '')
+                    disabled = disabled or require('cmp.config.context').in_treesitter_capture('comment')
+                    return not disabled
+                end,
             })
         end,
     },
