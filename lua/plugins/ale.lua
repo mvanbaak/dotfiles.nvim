@@ -44,7 +44,7 @@ return {
             -- typescriptreact = js_fixers,
         }
         -- fix on save
-        g.ale_fix_on_save = 1
+        g.ale_fix_on_save = 0
         -- disable lsp stuff
         g.ale_disable_lsp = 1
         -- Report using neovim diagnostics

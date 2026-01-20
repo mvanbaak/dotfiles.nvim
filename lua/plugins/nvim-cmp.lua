@@ -4,7 +4,7 @@
 -- LINKS :
 --   > github : https://github.com/hrsh7th/nvim-cmp
 --   > lspkind (dep)                      : https://github.com/onsails/lspkind.nvim
---   > luasnip (dep)                      : https://github.com/L3MON4D3/LuaSnip
+--   > nvim-snippy (dep)                  : https://github.com/dcampos/cmp-snippy
 --   > cmp-path (dep)                     : https://github.com/hrsh7th/cmp-path
 --   > cmp-treesitter (dep)               : https://github.com/ray-x/cmp-treesitter
 --   > cmp-nvim-lsp-signature-help (dep)  : https://github.com/hrsh7th/cmp-nvim-lsp-signature-help
@@ -22,20 +22,19 @@ return {
         dependencies = {
             -- helpers. icons/tools/etc
             { 'onsails/lspkind-nvim' }, -- VS Code–style pictograms for Neovim completion items
-            {
-                "L3MON4D3/LuaSnip", -- LuaSnip
-                -- follow latest release.
-                version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-                -- install jsregexp (optional!).
-                build = "make install_jsregexp"
-            },
+            { 'dcampos/cmp-snippy' },
             -- sources for completion
+            {
+                'dcampos/nvim-snippy',
+                dependencies = {
+                    { 'honza/vim-snippets' },
+                }
+            },
             { 'hrsh7th/cmp-path' },
             { 'ray-x/cmp-treesitter' },
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'hrsh7th/cmp-nvim-lsp-signature-help' },
             { 'hrsh7th/cmp-buffer' },
-            { 'saadparwaiz1/cmp_luasnip' },
             { 'jmbuhr/cmp-pandoc-references' },
             { 'hrsh7th/cmp-calc' },
             { 'kdheepak/cmp-latex-symbols' },
@@ -43,8 +42,8 @@ return {
         config = function()
             -- pull in some plugins we are going to use/config
             local cmp = require 'cmp'
-            local luasnip = require 'luasnip'
-            local lspkind = require "lspkind"
+            local lspkind = require 'lspkind'
+            local snippy = require 'snippy'
             lspkind.init()
 
             -- helper functions
@@ -58,7 +57,7 @@ return {
                 -- mandatory, one needs snippets
                 snippet = {
                     expand = function(args)
-                        luasnip.lsp_expand(args.body)
+                        snippy.expand_snippet(args.body)
                     end,
                 },
                 mapping = {
@@ -108,6 +107,7 @@ return {
                         menu = {
                             copilot = '[]',
                             luasnip = "[snip]",
+                            snippy = "[snip]",
                             nvim_lsp = "[LSP]",
                             buffer = "[buf]",
                             path = "[path]",
@@ -124,9 +124,9 @@ return {
                     { name = 'path' },
                     { name = 'nvim_lsp_signature_help' },
                     { name = 'nvim_lsp' },
+                    { name = 'snippy' },
                     { name = 'treesitter', keyword_length = 5, max_item_count = 3 },
                     { name = 'buffer', keyword_length = 5, max_item_count = 3 },
-                    { name = 'luasnip', keyword_length = 3, max_item_count = 3 },
                     { name = 'pandoc_references' },
                     { name = 'calc' },
                     { name = 'latex_symbols' },
