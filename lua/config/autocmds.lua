@@ -4,10 +4,16 @@
 -- ================================================================================================
 
 -- Restore last cursor position when reopening a file
-local last_cursor_group = vim.api.nvim_create_augroup("LastCursorGroup", {})
-vim.api.nvim_create_autocmd("BufReadPost", {
+local last_cursor_group = vim.api.nvim_create_augroup("LastCursorGroup", { clear = true })
+vim.api.nvim_create_autocmd("BufWinEnter", {
     group = last_cursor_group,
+    pattern = "*",
     callback = function()
+        -- Skip certain filetypes
+        if vim.tbl_contains({"gitcommit", "help"}, vim.bo.filetype) then
+            print("[" .. vim.bo.filetype .. "] skipping cursor restore")
+            return
+        end
         local mark = vim.api.nvim_buf_get_mark(0, '"')
         local lcount = vim.api.nvim_buf_line_count(0)
         if mark[1] > 0 and mark[1] <= lcount then
