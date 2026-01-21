@@ -34,3 +34,19 @@ vim.diagnostic.config({
         source = "always",
     },
 })
+
+-- helper function for jumping to next/prev diagnostic, based on severity
+local diagnostic_goto = function(next, severity)
+  severity = severity and vim.diagnostic.severity[severity] or nil
+  return function()
+    vim.diagnostic.jump({ count = next and 1 or -1, float = true, severity = severity })
+  end
+end
+
+vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+vim.keymap.set("n", "<leader>nd", diagnostic_goto(true), { desc = "Next Diagnostic" })
+vim.keymap.set("n", "<leader>pd", diagnostic_goto(false), { desc = "Prev Diagnostic" })
+vim.keymap.set("n", "<leader>ne", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
+vim.keymap.set("n", "<leader>pee", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
+vim.keymap.set("n", "<leader>nw", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
+vim.keymap.set("n", "<leader>pw", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
