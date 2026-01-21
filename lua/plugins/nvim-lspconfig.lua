@@ -13,6 +13,7 @@ return {
     dependencies = {
         { "mason-org/mason.nvim", opts = {} }, -- LSP/DAP/Linter installer & manager
         { "mason-org/mason-lspconfig.nvim" }, -- Bridge lspconfig and mason
+        { "hrsh7th/cmp-nvim-lsp" }, -- We want to pass the cmp lsp capabilities to our LSPs
     },
     config = function()
         require("mason-lspconfig").setup({
