@@ -25,6 +25,12 @@ return {
             },
         })
 
+        vim.lsp.enable({
+            "lua_ls",
+            "terraformls",
+            "ty",
+        })
+
         -- cmp has lsp capabilities
         local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
