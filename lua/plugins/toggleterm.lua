@@ -1,5 +1,5 @@
 return {
-    'akinsho/toggleterm.nvim',
+    "akinsho/toggleterm.nvim",
     config = function()
         require("toggleterm").setup({
             size = 10,
@@ -9,7 +9,7 @@ return {
             float_opts = {
                 border = "curved",
                 highlights = {
-                    border = "Normal",
+                    border = "FloatBorder",
                     background = "Normal",
                 },
             },
