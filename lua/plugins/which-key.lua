@@ -19,6 +19,7 @@ return {
             { "<leader>n", group = "[N]ext" },
             { "<leader>p", group = "[P]rev" },
             { "<leader>s", group = "[S]plit" },
+            { "<leader>t", group = "[T]oggle" },
         },
     },
     keys = {
