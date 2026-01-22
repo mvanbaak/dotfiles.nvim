@@ -8,7 +8,15 @@
 return {
     "folke/which-key.nvim",
     event = "VeryLazy",
-    opts = {},
+    opts = {
+        spec = {
+            { "<leader>f", group = "FZF [F]ind" },
+            { "<leader>l", group = "[L]azy*" },
+            { "<leader>n", group = "[N]ext" },
+            { "<leader>p", group = "[P]rev" },
+            { "<leader>s", group = "[S]plit" },
+        },
+    },
     keys = {
         {
             "<leader>?",
