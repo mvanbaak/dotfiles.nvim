@@ -47,6 +47,6 @@ vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diag
 vim.keymap.set("n", "<leader>nd", diagnostic_goto(true), { desc = "Next Diagnostic" })
 vim.keymap.set("n", "<leader>pd", diagnostic_goto(false), { desc = "Prev Diagnostic" })
 vim.keymap.set("n", "<leader>ne", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
-vim.keymap.set("n", "<leader>pee", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
+vim.keymap.set("n", "<leader>pe", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 vim.keymap.set("n", "<leader>nw", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 vim.keymap.set("n", "<leader>pw", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
