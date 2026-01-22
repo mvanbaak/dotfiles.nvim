@@ -41,7 +41,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     group = float_border_group,
     pattern = "*",
     callback = function()
-        vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#cba6f7" })
+        vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
         vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
     end,
 })
