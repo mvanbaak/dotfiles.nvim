@@ -8,6 +8,7 @@
 
 return {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     dependencies = {
         "neovim-treesitter/treesitter-parser-registry",
     },
@@ -41,13 +42,6 @@ return {
             "yaml",
         }
 
-        local installed = require("nvim-treesitter.config").installed_parsers()
-        local to_install = vim.tbl_filter(function(parser)
-            return not vim.tbl_contains(installed, parser)
-        end, parsers)
-
-        if #to_install > 0 then
-            require("nvim-treesitter").install(to_install)
-        end
+        require("nvim-treesitter").install(parsers)
     end,
 }
