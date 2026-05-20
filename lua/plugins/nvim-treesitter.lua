@@ -22,5 +22,32 @@ return {
                 enable = true,
             },
         })
+
+        local parsers = {
+            "bash",
+            "c",
+            "dockerfile",
+            "javascript",
+            "lua",
+            "markdown_inline",
+            "markdown",
+            "python",
+            "query",
+            "terraform",
+            "tsx",
+            "typescript",
+            "vim",
+            "vimdoc",
+            "yaml",
+        }
+
+        local installed = require("nvim-treesitter.config").installed_parsers()
+        local to_install = vim.tbl_filter(function(parser)
+            return not vim.tbl_contains(installed, parser)
+        end, parsers)
+
+        if #to_install > 0 then
+            require("nvim-treesitter").install(to_install)
+        end
     end,
 }
