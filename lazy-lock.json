@@ -19,7 +19,6 @@
   "mason.nvim": { "branch": "main", "commit": "bb639d4bf385a4d89f478b83af4d770be05ab7eb" },
   "mini.icons": { "branch": "main", "commit": "520995f1d75da0e4cc901ee95080b1ff2bc46b94" },
   "moonfly": { "branch": "master", "commit": "1c0a9994bb6bb5b43859c67924aabd061c4b7905" },
-  "neon": { "branch": "main", "commit": "7765aaa7d1cd3804176140644640766e4411c766" },
   "nvim-cmp": { "branch": "main", "commit": "a1d504892f2bc56c2e79b65c6faded2fd21f3eca" },
   "nvim-lspconfig": { "branch": "master", "commit": "9573948c38bfabeec353ae7dd7d3ffec4c506a6b" },
   "nvim-snippy": { "branch": "master", "commit": "f8b34f206a14eb00b5723dbc15e9a5911f1210ab" },
