@@ -5,7 +5,18 @@
 --   > github : https://github.com/dense-analysis/ale
 -- ================================================================================================
 
-local js_fixers = { "eslint", "prettier" }
+local generic_fixers = {
+    "remove_trailing_lines",
+    "trim_whitespace",
+}
+
+local function with_generic(fixers)
+    local result = vim.deepcopy(fixers)
+    vim.list_extend(result, generic_fixers)
+    return result
+end
+
+local js_fixers = with_generic({ "eslint", "prettier" })
 
 return {
     'dense-analysis/ale',
@@ -29,15 +40,15 @@ return {
             },
         }
         g.ale_fixers = {
-            ["*"] = {
-                "remove_trailing_lines",
-                "trim_whitespace",
-            },
-            python = {
+            ["*"] = generic_fixers,
+            terraform = with_generic({
+                "terraform",
+            }),
+            python = with_generic({
                 "pycln",
                 "reorder-python-imports",
                 "ruff_format",
-            },
+            }),
             -- javascript = js_fixers,
             -- typescript = js_fixers,
             -- javascriptreact = js_fixers,
