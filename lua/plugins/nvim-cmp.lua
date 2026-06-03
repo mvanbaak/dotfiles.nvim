@@ -144,10 +144,18 @@ return {
                 },
                 enabled = function()
                     local disabled = false
+                    -- Disable on prompt
                     disabled = disabled or (vim.api.nvim_get_option_value('buftype', { buf = 0 }) == 'prompt')
+                    -- Disable while recording or executing a macro
                     disabled = disabled or (vim.fn.reg_recording() ~= '')
                     disabled = disabled or (vim.fn.reg_executing() ~= '')
+                    -- Disable in comments using treesitter
                     disabled = disabled or require('cmp.config.context').in_treesitter_capture('comment')
+                    if not disabled then
+                        -- Fallback: also check syntax groups (works for buffers without treesitter)
+                        local syntax_group = vim.fn.synIDattr(vim.fn.synID(vim.fn.line('.'), vim.fn.col('.'), 1), 'name')
+                        disabled = disabled or (syntax_group ~= nil and syntax_group:match('Comment') ~= nil)
+                    end
                     return not disabled
                 end,
             })
